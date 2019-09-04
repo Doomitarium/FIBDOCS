@@ -11,7 +11,7 @@ constructor(props) {
   super(props);
     
   this.state = {
-   id: 0,
+   id: 1,
    Max: 0, 
    img: 0,
    info: "",
@@ -55,8 +55,23 @@ constructor(props) {
       }).then(function(body){
         console.log(body[0].id);
         self.setState({jso: body[0].id+1});
-        self.setState({Max: self.state.jso +1});
+        self.setState({Max: self.state.jso});
         self.setState({id: self.state.jso});
+        self.setState({info: document.getElementById('info').value})
+        self.setState({age: document.getElementById('age').value})
+        self.setState({name: document.getElementById('name').value})
+        self.setState({address: document.getElementById('address').value})
+        self.setState({addInfo: document.getElementById('Add info').value})
+        self.setState({ Felony1: document.getElementById('felony1').checked.toString()})
+        self.setState({ Felony2: document.getElementById('felony2').checked.toString()})
+        self.setState({ Felony3: document.getElementById('felony3').checked.toString()})
+        self.setState({ Felony4: document.getElementById('felony4').checked.toString()})
+        self.setState({ Felony5: document.getElementById('felony5').checked.toString()})
+        self.setState({ Misdemeanor1: document.getElementById('misdemeanor1').checked.toString()})
+        self.setState({ Misdemeanor2: document.getElementById('misdemeanor2').checked.toString()})
+        self.setState({ Misdemeanor3: document.getElementById('misdemeanor3').checked.toString()})
+        self.setState({ Misdemeanor4: document.getElementById('misdemeanor4').checked.toString()})
+        self.setState({ Misdemeanor5: document.getElementById('misdemeanor5').checked.toString()})
         console.log(self.state.id);
       })
     }
@@ -70,11 +85,13 @@ constructor(props) {
     this.setState({img: this.state.img - 1})
     }
   }
-  nextPerson(){
+  nextPerson(e){
+    e.preventDefault();
     const self = this;
     if(this.state.id+1 > this.state.Max){}
     else{
-    self.setState({id: self.state.id+1})
+    this.setState({id: this.state.id+1})
+    console.log(this.state.id);
     fetch('http://localhost:3001/getusers', {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
@@ -105,11 +122,13 @@ constructor(props) {
       })
     }
   }
-  previousPerson(){
+  previousPerson(e){
+    e.preventDefault();
     const self = this;
     if(this.state.id-1 < 0){}
     else{
-    self.setState({id: self.state.id-1})
+    this.setState({id: this.state.id-1})
+    console.log(this.state.id);
     fetch('http://localhost:3001/getusers', {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
@@ -188,17 +207,6 @@ constructor(props) {
   this.setState({img: this.state.img})
   this.setState({id: this.state.id +1});
   this.setState({id: this.state.Max}); 
-  this.setState({Felony1: document.getElementById('felony1').value})
-  this.setState({Felony2: document.getElementById('felony2').value})
-  this.setState({Felony3: document.getElementById('felony3').value})
-  this.setState({Felony4: document.getElementById('felony4').value})
-  this.setState({Felony5: document.getElementById('felony5').value})
-  this.setState({Misdemeanor1: document.getElementById('misdemeanor1').value})
-  this.setState({Misdemeanor2: document.getElementById('misdemeanor2').value})
-  this.setState({Misdemeanor3: document.getElementById('misdemeanor3').value})
-  this.setState({Misdemeanor4: document.getElementById('misdemeanor4').value})
-  this.setState({Misdemeanor5: document.getElementById('misdemeanor5').value})
-  console.log(this.state.Misdemeanor5)
   fetch('http://localhost:3000/', {
   method: 'POST',
   body: JSON.stringify({
@@ -209,16 +217,16 @@ constructor(props) {
       name: this.state.name,
       address: this.state.address,
       addInfo: this.state.addInfo,
-      Felony1: document.getElementById('felony1').value,
-      Felony2: document.getElementById('felony2').value,
-      Felony3: document.getElementById('felony3').value,
-      Felony4: document.getElementById('felony4').value,
-      Felony5: document.getElementById('felony5').value,
-      Misdemeanor1: document.getElementById('misdemeanor1').value,
-      Misdemeanor2: document.getElementById('misdemeanor2').value,
-      Misdemeanor3: document.getElementById('misdemeanor3').value,
-      Misdemeanor4: document.getElementById('misdemeanor4').value,
-      Misdemeanor5: document.getElementById('misdemeanor5').value
+      felony1: document.getElementById('felony1').checked.toString(),
+      felony2: document.getElementById('felony2').checked.toString(),
+      felony3: document.getElementById('felony3').checked.toString(),
+      felony4: document.getElementById('felony4').checked.toString(),
+      felony5: document.getElementById('felony5').checked.toString(),
+      misdemeanor1: document.getElementById('misdemeanor1').checked.toString(),
+      misdemeanor2: document.getElementById('misdemeanor2').checked.toString(),
+      misdemeanor3: document.getElementById('misdemeanor3').checked.toString(),
+      misdemeanor4: document.getElementById('misdemeanor4').checked.toString(),
+      misdemeanor5: document.getElementById('misdemeanor5').checked.toString()
   }),headers: {"Content-Type": "application/json"},
   }).then(function(response) {  
     return response.json();
@@ -269,16 +277,16 @@ initPerson2(e){
           name: self.state.name,
           address: self.state.address,
           addInfo: self.state.addInfo,
-          Felony1: self.state.Felony1,
-      Felony2: self.state.Felony2,
-      Felony3: self.state.Felony3,
-      Felony4: self.state.Felony4,
-      Felony5: self.state.Felony5,
-      Misdemeanor1: self.state.Misdemeanor1,
-      Misdemeanor2: self.state.Misdemeanor2,
-      Misdemeanor3: self.state.Misdemeanor3,
-      Misdemeanor4: self.state.Misdemeanor4,
-      Misdemeanor5: self.state.Misdemeanor5
+          felony1: self.state.Felony1,
+      felony2: self.state.Felony2,
+      felony3: self.state.Felony3,
+      felony4: self.state.Felony4,
+      felony5: self.state.Felony5,
+      misdemeanor1: self.state.Misdemeanor1,
+      misdemeanor2: self.state.Misdemeanor2,
+      misdemeanor3: self.state.Misdemeanor3,
+      misdemeanor4: self.state.Misdemeanor4,
+      misdemeanor5: self.state.Misdemeanor5
       }),headers: {"Content-Type": "application/json"},
       }).then(function(response) {  
         return response.json();
@@ -319,16 +327,16 @@ updateValue(e){
       address: document.getElementById('address').value,
       addInfo: document.getElementById('Add info').value,
       img: this.state.img,
-      Felony1: document.getElementById('felony1').value,
-      Felony2: document.getElementById('felony2').value,
-      Felony3: document.getElementById('felony3').value,
-      Felony4: document.getElementById('felony4').value,
-      Felony5: document.getElementById('felony5').value,
-      Misdemeanor1: document.getElementById('misdemeanor1').value,
-      Misdemeanor2: document.getElementById('misdemeanor2').value,
-      Misdemeanor3: document.getElementById('misdemeanor3').value,
-      Misdemeanor4: document.getElementById('misdemeanor4').value,
-      Misdemeanor5: document.getElementById('misdemeanor5').value
+      felony1: document.getElementById('felony1').checked.toString(),
+      felony2: document.getElementById('felony2').checked.toString(),
+      felony3: document.getElementById('felony3').checked.toString(),
+      felony4: document.getElementById('felony4').checked.toString(),
+      felony5: document.getElementById('felony5').checked.toString(),
+      misdemeanor1: document.getElementById('misdemeanor1').checked.toString(),
+      misdemeanor2: document.getElementById('misdemeanor2').checked.toString(),
+      misdemeanor3: document.getElementById('misdemeanor3').checked.toString(),
+      misdemeanor4: document.getElementById('misdemeanor4').checked.toString(),
+      misdemeanor5: document.getElementById('misdemeanor5').checked.toString()
     }),headers: {"Content-Type": "application/json"},
     }).then(function(response) {  
       return response.text();
@@ -352,6 +360,7 @@ updateValue(e){
       self.setState({Misdemeanor4: body[0].Misdemeanor4});
       self.setState({Misdemeanor5: body[0].Misdemeanor5});
     })
+    console.log(this.Misdemeanor5);
 }
 onChange(e){
   const value = e.target.value
@@ -385,8 +394,8 @@ onChange(e){
       <p>and they are {this.state.age} years old, and they are a/an {this.state.info} person</p><br></br>
       <p>CRIME DATA</p><br></br>
       <p>{this.state.addInfo}</p><br></br>
-      <button type = 'submit' onClick={this.nextPerson}>next person</button>
-      <button type = 'submit' onClick={this.previousPerson}>previous person</button>
+      <button type = 'submit' onClick={(e) => this.nextPerson(e)}>next person</button>
+      <button type = 'submit' onClick={(e) => this.previousPerson(e)}>previous person</button>
       <form>
       <input type = 'text' id = 'Varient' defaultValue = '1' onChange={this.onChange} ></input>
       <button type = 'submit' onClick={(e) => this.initPerson2(e)}>Submit</button>
