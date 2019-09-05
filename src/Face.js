@@ -88,15 +88,13 @@ constructor(props) {
   nextPerson(e){
     e.preventDefault();
     const self = this;
-    if(this.state.id+1 > this.state.Max){}
+    if(this.state.id+1 >= this.state.Max){}
     else{
-    this.setState({id: this.state.id+1})
-    console.log(this.state.id);
     fetch('http://localhost:3001/getusers', {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-        id: this.state.id,
+        id: this.state.id + 1,
     })}).then(function(response) {
         return response.json();
       }).then(function(body){
@@ -127,13 +125,11 @@ constructor(props) {
     const self = this;
     if(this.state.id-1 < 0){}
     else{
-    this.setState({id: this.state.id-1})
-    console.log(this.state.id);
     fetch('http://localhost:3001/getusers', {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-        id: this.state.id,
+        id: this.state.id-1,
     })}).then(function(response) {
         return response.json();
       }).then(function(body){
