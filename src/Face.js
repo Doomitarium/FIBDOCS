@@ -278,15 +278,15 @@ initPerson2(e){
           address: self.state.address,
           addInfo: self.state.addInfo,
           felony1: self.state.Felony1,
-      felony2: self.state.Felony2,
-      felony3: self.state.Felony3,
-      felony4: self.state.Felony4,
-      felony5: self.state.Felony5,
-      misdemeanor1: self.state.Misdemeanor1,
-      misdemeanor2: self.state.Misdemeanor2,
-      misdemeanor3: self.state.Misdemeanor3,
-      misdemeanor4: self.state.Misdemeanor4,
-      misdemeanor5: self.state.Misdemeanor5
+          felony2: self.state.Felony2,
+          felony3: self.state.Felony3,
+          felony4: self.state.Felony4,
+          felony5: self.state.Felony5,
+          misdemeanor1: self.state.Misdemeanor1,
+          misdemeanor2: self.state.Misdemeanor2,
+          misdemeanor3: self.state.Misdemeanor3,
+          misdemeanor4: self.state.Misdemeanor4,
+          misdemeanor5: self.state.Misdemeanor5
       }),headers: {"Content-Type": "application/json"},
       }).then(function(response) {  
         return response.json();
